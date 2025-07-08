@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris Game</title>
+    <link rel="stylesheet" href="tetris.css">
+</head>
+<body>
+    <h1> 俄罗斯方块 </h1>
+    <div id="main-layout">
+        <!-- <img id="side-image" src="JohnSmile.png" alt="侧边图片"> -->
+        <div id="game-container">
+            <canvas id="tetris" width="200" height="400"></canvas>
+            <div id="score">Score: <span id="score-value">0</span></div><span id="timer">Time: 0s</span>
+            <div id="button-row">
+                <button id="start-btn">Start Game</button>
+                <button id="pause-btn">Pause Game</button>
+                <button id="restart-btn">Restart Game</button>
+            </div>
+        </div>
+    </div>
+    <script src="tetris.js"></script>
+</body>
+</html> 
