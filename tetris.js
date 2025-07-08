@@ -327,6 +327,36 @@ window.addEventListener('keyup', (e) => {
     }
 });
 
+// 手机端方向按钮事件
+function mobileMove(dir) {
+    switch (dir) {
+        case 'left': movePiece(-1, 0); break;
+        case 'right': movePiece(1, 0); break;
+        case 'down':
+            if (!isAccelerated) {
+                isAccelerated = true;
+                clearInterval(gameInterval);
+                gameInterval = setInterval(update, acceleratedSpeed);
+            }
+            dropPiece();
+            break;
+        case 'up': rotatePiece(); break;
+    }
+}
+function mobileDownRelease() {
+    if (isAccelerated) {
+        isAccelerated = false;
+        clearInterval(gameInterval);
+        gameInterval = setInterval(update, normalSpeed);
+    }
+}
+
+document.getElementById('btn-left')?.addEventListener('touchstart', e => { e.preventDefault(); mobileMove('left'); });
+document.getElementById('btn-right')?.addEventListener('touchstart', e => { e.preventDefault(); mobileMove('right'); });
+document.getElementById('btn-up')?.addEventListener('touchstart', e => { e.preventDefault(); mobileMove('up'); });
+document.getElementById('btn-down')?.addEventListener('touchstart', e => { e.preventDefault(); mobileMove('down'); });
+document.getElementById('btn-down')?.addEventListener('touchend', e => { e.preventDefault(); mobileDownRelease(); });
+
 // Update update() to move piece down
 function update() {
     dropPiece();
